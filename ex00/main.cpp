@@ -1,0 +1,56 @@
+#include "BitcoinExchange.hpp"
+#include <string.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <stdlib.h>
+#include <iterator>
+#include <iomanip>
+
+int main(int ac, char **av)
+{
+    if(ac == 2)
+    {
+        std::ifstream File("data.csv");
+        if(!File)
+        {
+            std::cerr << "Error File not fond\n";
+            return 1;
+        }
+        std::string line;
+        if(File.is_open())
+        {
+            std::getline(File, line);
+            if(line != "date,exchange_rate")
+            {
+                std::cerr << "data not correct\n";
+                File.close();
+                exit(EXIT_FAILURE);
+            }
+            std::list<data> dv;
+            while(File.is_open() && std::getline(File,line))
+            {
+                try{
+                    data d1 = {{atoi(line.c_str()), atoi(line.c_str() + 5), atoi(line.c_str() + 8)} ,atof(line.c_str() + 11)};
+                    dv.push_back(d1);
+                }
+                catch(const std::invalid_argument& e)
+                {
+                    std::cerr << "Invalid input form a data" << std::endl;
+                }
+            }
+            if(File.is_open())
+                File.close();
+            std::list<data>::iterator it;
+            for(it = dv.begin(); it != dv.end(); it++)
+            {
+                for(int i = 0; i < 3; i++)
+                std::cout << std::setw(2) << std::setfill('0') << it->date[i] << " ";
+                std::cout << it->value << std::endl;
+            }
+        }
+    }
+    else
+        std::cout << "Error: could not open file.\n";
+    return 0;
+}
