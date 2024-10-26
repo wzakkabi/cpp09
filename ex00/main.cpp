@@ -7,6 +7,7 @@
 #include <iterator>
 #include <iomanip>
 
+
 int main(int ac, char **av)
 {
     if(ac == 2)
@@ -42,12 +43,8 @@ int main(int ac, char **av)
             if(File.is_open())
                 File.close();
             std::list<data>::iterator it;
-            for(it = dv.begin(); it != dv.end(); it++)
-            {
-                for(int i = 0; i < 3; i++)
-                std::cout << std::setw(2) << std::setfill('0') << it->date[i] << " ";
-                std::cout << it->value << std::endl;
-            }
+            btc my_btc(dv);
+            my_btc.print();
         }
     }
     else
