@@ -51,6 +51,8 @@ int main(int ac, char **av)
             std::list<data>::iterator it;
             btc my_btc(dv);
             my_btc.check_File_input(input);
+            if(input.is_open())
+                input.close();
         }
 
     }

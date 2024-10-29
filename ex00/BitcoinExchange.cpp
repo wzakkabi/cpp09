@@ -151,4 +151,6 @@ void    btc::check_File_input(std::ifstream &F_N)
       }
        
     }
+    else
+        std::cerr << "File not open xD\n";
 }
