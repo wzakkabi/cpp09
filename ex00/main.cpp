@@ -1,11 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include <string.h>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <stdlib.h>
-#include <iterator>
-#include <iomanip>
 
 
 int main(int ac, char **av)

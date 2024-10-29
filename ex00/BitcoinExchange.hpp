@@ -1,14 +1,11 @@
 #pragma once
-#include <iterator>
+// #include <iterator>
 #include <list>
 #include <string.h>
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <stdlib.h>
-#include <iterator>
-#include <iomanip>
-#include <limits>
+
 
 struct data
 {
