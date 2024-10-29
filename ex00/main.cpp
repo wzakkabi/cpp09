@@ -13,10 +13,16 @@ int main(int ac, char **av)
     if(ac == 2)
     {
         std::ifstream File("data.csv");
+        std::ifstream input(av[1]);
         if(!File)
         {
-            std::cerr << "Error File not fond\n";
-            return 1;
+            std::cerr << "Error Data File not fond\n";
+            exit(1);
+        }
+        if(!input)
+        {
+            std::cerr << "Error input File not fond\n";
+            exit(EXIT_FAILURE);
         }
         std::string line;
         if(File.is_open())
@@ -44,8 +50,9 @@ int main(int ac, char **av)
                 File.close();
             std::list<data>::iterator it;
             btc my_btc(dv);
-            my_btc.print();
+            my_btc.check_File_input(input);
         }
+
     }
     else
         std::cout << "Error: could not open file.\n";

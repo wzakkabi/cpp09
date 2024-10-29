@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <iterator>
 #include <iomanip>
+#include <limits>
 
 struct data
 {
@@ -15,11 +16,11 @@ struct data
     float value;
 };
 
-
 class btc
 {
     private:
     std::list<data> dv;
+    float Return_last_update(data date);
 
     public:
     btc();
@@ -27,6 +28,7 @@ class btc
     btc(const btc &tmp);
     btc &operator=(const btc &tmp);
     void    Add(data &tmp);
-    void    print();
+    void    print_data();
+    void    check_File_input(std::ifstream &F_N);
     ~btc();
 };
