@@ -17,15 +17,13 @@ void check_error(const std::string &s)
 
 int main(int c, char *ac[])
 {
-    // if(c == 2)
-    // {
-    //     check_error(ac[1]);
-    //     RPN r;
-    //     r.result(ac[1]);
-    // }
-    // else
-    //     return EXIT_FAILURE;
-    std::string s = "1a45 4";
-    std::cout << isdigit(s[1]);
+    if(c == 2)
+    {
+        check_error(ac[1]);
+        RPN r;
+        r.result(ac[1]);
+    }
+    else
+        return EXIT_FAILURE;
     return 0;
 }
