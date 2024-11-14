@@ -1,8 +1,7 @@
-NAME = btc
-
+NAME = RPN
 CC = c++
-FLAG = -std=c++98 -Wall -Wextra -Werror 
-SRC = main.cpp BitcoinExchange.cpp
+FLAG = -std=c++98 #-Wall -Wextra -Werror 
+SRC = main.cpp RPN.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -20,5 +19,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-	
