@@ -39,10 +39,12 @@ int rs(int first, char ex, int end)
 }
 void RPN::result(const std::string &s)
 {
-    for(int i = 0; i < s.length();i++)
+    for(int i = 0; i < s.length();)
     {
         while(s[i] && s[i] == ' ')
             i++;
+        if(s[i] == '\0')
+            break;
         if(expression(s[i]) && !(s[i] == '-' && s[i + 1] && isdigit(s[i + 1])))
         {
             if(_stack.size() <= 1)
@@ -59,11 +61,11 @@ void RPN::result(const std::string &s)
                 int sum = rs(tmp1, s[i], tmp);
                 _stack.push(sum);
             }
+            i++;
         }
         else
         {
             int ss = atoi(s.c_str() + i);
-            std::cout << ss << " ======\n"; 
             _stack.push(ss);
             if(s[i] == '-')
                 i++;
@@ -73,7 +75,6 @@ void RPN::result(const std::string &s)
     }
     if(_stack.size() > 1)
     {
-        std::cout << _stack.size();
         std::cerr << "Error\n";
         exit(EXIT_FAILURE);
     }
