@@ -8,7 +8,6 @@ void check_error(const std::string &s)
             continue;
         else
         {
-            std::cout << "===== " << s[i] << std::endl;
             std::cerr << "Input Error" << std::endl;
             exit(EXIT_FAILURE);
         }
@@ -18,13 +17,15 @@ void check_error(const std::string &s)
 
 int main(int c, char *ac[])
 {
-    if(c < 2)
-        return EXIT_FAILURE;
-    for(int i = 1; i < c; i++)
-        check_error(ac[i]);
-    RPN r;
-    for(int i = 1; i < c; i++)
-        r.add(ac[i]);
-    r.result();
+    // if(c == 2)
+    // {
+    //     check_error(ac[1]);
+    //     RPN r;
+    //     r.result(ac[1]);
+    // }
+    // else
+    //     return EXIT_FAILURE;
+    std::string s = "1a45 4";
+    std::cout << isdigit(s[1]);
     return 0;
 }

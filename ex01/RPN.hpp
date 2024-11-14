@@ -3,16 +3,17 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <stdlib.h>
+#include <ctype.h>
+
 class RPN
 {
     private:
-    std::queue<int> number;
-    std::queue<char> expression;
+    std::stack<int> _stack;
     public:
     RPN();
     RPN(const RPN &tmp);
     RPN &operator=(const RPN &tmp);
     ~RPN();
-    void add(const std::string &s);
-    void result();
+    void result(const std::string &s);
 };

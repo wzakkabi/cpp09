@@ -21,17 +21,11 @@ RPN::~RPN()
 {
 
 }
-void RPN::add(const std::string &s)
+bool expression(const char &c)
 {
-    for(int i = 0; i < s.length(); i++)
-    {
-        if(s[i] >= '0' && s[i] <= '9')
-            this->number.push((s[i] - '0'));
-        else if(s[i] == ' ' || s[i] == '\t')
-            continue;
-        else
-            this->expression.push(s[i]);
-    }
+    if(c == '/' || c == '*' || c == '-' || c == '+')
+        return true;
+    return false;
 }
 
 int rs(int first, char ex, int end)
@@ -45,28 +39,34 @@ int rs(int first, char ex, int end)
     else
         return (first - end);
 }
-void RPN::result()
+void RPN::result(const std::string &s)
 {
-    int res, tmp1, tmp2;
-    if(number.size())
+    for(int i = 0; i < s.length(); i++)
     {
-        res = number.front();
-        number.pop();
+        while(s[i] && s[i] == ' ')
+            i++;
+        if(expression(s[i]))
+        {
+            if(_stack.size() <= 1)
+            {
+                std::cerr << "Error invalid input" << std::endl;
+                exit(EXIT_FAILURE);
+            }
+            else
+            {
+                int tmp = _stack.top();
+                _stack.pop();
+                int tmp1 = _stack.top();
+                _stack.pop();
+                int sum = rs(tmp, s[i], tmp1);
+                _stack.push(sum);
+            }
+        }
+        else
+        {
+            _stack.push(atoi(s.c_str() + i));
+            while(s[i] && isdigit(s[i]))
+                i++;
+        }
     }
-    while(number.size() && expression.size())
-    {
-        std::cout << "result = "<< res << " " << expression.front() << " " << number.front() << std::endl; 
-        res = rs(res, expression.front(), number.front());
-        number.pop();
-        expression.pop();
-    }
-    // if(number.size() != 0 || expression.size() != 0)
-    // {
-    //     std::cerr << "error number or expression not equal!" << std::endl;
-    //     exit(EXIT_FAILURE);
-    // }
-    // else
-        std::cout << res << std::endl;
-    number.empty();
-    expression.empty();
 }
