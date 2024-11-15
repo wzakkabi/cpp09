@@ -1,25 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wzakkabi <wzakkabi@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/15 17:23:55 by wzakkabi          #+#    #+#             */
+/*   Updated: 2024/11/15 17:23:55 by wzakkabi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RPN.hpp"
-
-void check_error(const std::string &s)
-{
-    for(int i = 0; i < s.length(); i++)
-    {
-        if((s[i] >= '0' && s[i] <= '9') || s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*' || s[i] == ' ' || s[i] == '\t')
-            continue;
-        else
-        {
-            std::cerr << "Input Error" << std::endl;
-            exit(EXIT_FAILURE);
-        }
-    }
-}
-
 
 int main(int c, char *ac[])
 {
     if(c == 2)
     {
-        check_error(ac[1]);
         RPN r;
         r.result(ac[1]);
     }

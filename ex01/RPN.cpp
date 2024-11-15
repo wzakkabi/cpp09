@@ -37,8 +37,29 @@ int rs(int first, char ex, int end)
     else
         return (first - end);
 }
+
+void check_error(const std::string &s)
+{
+    for(int i = 0; i < s.length(); i++)
+    {
+        if((s[i] >= '0' && s[i] <= '9') || s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*' || s[i] == ' ' || s[i] == '\t')
+            continue;
+        else
+        {
+            std::cerr << "Input Error" << std::endl;
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
 void RPN::result(const std::string &s)
 {
+    if(s.empty())
+    {
+        std::cerr << "Error not input found" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    check_error(s);
     for(int i = 0; i < s.length();)
     {
         while(s[i] && s[i] == ' ')
