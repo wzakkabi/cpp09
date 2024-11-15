@@ -40,7 +40,7 @@ int rs(int first, char ex, int end)
 
 void check_error(const std::string &s)
 {
-    for(int i = 0; i < s.length(); i++)
+    for(unsigned long i = 0; i < s.length(); i++)
     {
         if((s[i] >= '0' && s[i] <= '9') || s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*' || s[i] == ' ' || s[i] == '\t')
             continue;
@@ -60,7 +60,7 @@ void RPN::result(const std::string &s)
         exit(EXIT_FAILURE);
     }
     check_error(s);
-    for(int i = 0; i < s.length();)
+    for(unsigned long i = 0; i < s.length();)
     {
         while(s[i] && s[i] == ' ')
             i++;
