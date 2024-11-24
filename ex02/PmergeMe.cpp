@@ -28,28 +28,49 @@ std::vector<unsigned int>   PmergeMe::sort(std::vector<unsigned int> &list)
         std::sort(list.begin(), list.end());
         return list;
     }
-
-    std::vector<std::pair<int, int>> pair;
+    std::vector<std::pair<unsigned int, unsigned int> > pair;
     std::vector<unsigned int> pending;
-    std::vector<unsigned int>::iterator it = list.begin();
-    for(int i = 0; i + 1 < n; i += 2)
+    for(unsigned int i = 0; i + 1 < n; i += 2)
     {
-       pair.push_back(std::make_pair(it[i], it[i + 1]));
+       pair.push_back(std::make_pair(list[i], list[i + 1]));
     }
-    if(n % 2 == 1)
+    
+    if(n % 2 != 1)
         pending.push_back(list.back());
-    for(int i = 0; pair.size(); i++) {
-        if(pair[i].first < pair[i].second)
+    
+    for(unsigned int i = 0; i < pair.size(); ++i) {
+        if(pair[i].first > pair[i].second)
             std::swap(pair[i].first , pair[i].second);
     }
+
     //now im gonna take the large number and pushit to pending and use the Recursively
-    std::vector<int> main_chain;
+    std::vector<unsigned int> main_chain;
     main_chain.push_back(pair[0].first);
-    for(int i = 0; i < pair.size(); ++i)
+    for(unsigned long i = 0; i < pair.size(); ++i)
     {
-        main_chain.push_back(pair[i].second;
+        main_chain.push_back(pair[i].second);
+    }
+    main_chain = sort(main_chain);
+    
+    for(unsigned long i = 0; i < pair.size(); ++i)
+    {
+        std::vector<unsigned int>::iterator Apos = std::lower_bound(main_chain.begin(), main_chain.end(), pair[i].first);
+        std::vector<unsigned int>::iterator Bpos = std::lower_bound(main_chain.begin(), main_chain.end(), pair[i].second);
+        if(Apos > Bpos)
+            std::swap(pair[i].first, pair[i].second);
     }
 
+    for(unsigned long i = 1; i < pair.size(); ++i)
+    {
+        pending.push_back(pair[i].first);
+    }
+
+    for(unsigned long i = 0; i < pending.size(); ++i)
+    {
+        std::vector<unsigned int>::iterator pos = std::lower_bound(main_chain.begin(), main_chain.end(), pending[i]);
+        main_chain.insert(pos, pending[i]);
+    }
+    return main_chain;
 }
 
 //void    sort(std::queue<int> &vector);

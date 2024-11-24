@@ -3,11 +3,12 @@
 #include <queue>
 #include <iostream>
 #include <iterator>
+#include <algorithm>
+#include <utility>
 
 class PmergeMe
 {
     private:
-    std::list<int> list;
     std::queue<int> q_list;
 
     public:
