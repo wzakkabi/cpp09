@@ -75,7 +75,7 @@ bool    check_date(const char *s, data &err)
         return false;
     }
     err.value = atof(p + 1);
-    if(err.date[0] < 2008 || err.date[1] < 0 || err.date[1] > 12 || err.date[2] < 0 || err.date[2] > 31)
+    if(err.date[0] < 2009 || err.date[1] < 0 || err.date[1] > 12 || err.date[2] < 0 || err.date[2] > 31)
     {
         std::cout << "Error: bad input date => " << s << std::endl;
         return false;
@@ -88,7 +88,7 @@ bool    check_date(const char *s, data &err)
             std::cerr << "Error: not a positive number.\n";
         return false;
     }
-    else if(err.date[0] > 2009)
+    else if(err.date[0] >= 2009)
         for(int i = 0; i < 3; i++){
             std::cout << std::setw(2) << std::setfill('0') << err.date[i] << "";
             if(i<2)

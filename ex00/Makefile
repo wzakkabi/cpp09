@@ -1,5 +1,4 @@
 NAME = btc
-
 CC = c++
 FLAG = -std=c++98 -Wall -Wextra -Werror 
 SRC = main.cpp BitcoinExchange.cpp

@@ -1,22 +1,23 @@
 #pragma once
 #include <vector>
-#include <queue>
+#include <deque>
 #include <iostream>
 #include <iterator>
 #include <algorithm>
-#include <utility>
+#include <utility>// for std::swap
+#include <iomanip> // for std::setpe..
+#include <ctime> // for clock time
 
 class PmergeMe
 {
     private:
-    std::queue<int> q_list;
-
+    
     public:
     PmergeMe();
     PmergeMe(const PmergeMe &tmp);
     PmergeMe &operator=(const PmergeMe &tmp);
+    
     std::vector<unsigned int>   sort(std::vector<unsigned int> &list);
-
-    // void    sort(std::queue<int> &list);
+    std::deque<unsigned int>   sort(std::deque<unsigned int> &list);
     ~PmergeMe();
 };
